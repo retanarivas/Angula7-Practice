@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms'
-import { 
-  MatSidenavModule, 
-  MatToolbarModule, 
-  MatButtonModule, 
-  MatIconModule, 
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+  MatSidenavModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule,
   MatListModule,
   MatFormFieldModule,
   MatInputModule,
@@ -21,6 +21,7 @@ import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
 import { DescriptionComponent } from './description/description.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { DescriptionComponent } from './description/description.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
