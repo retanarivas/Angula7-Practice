@@ -1,33 +1,50 @@
 const express = require("express");
-const app = express();
 const path = require("path");
+const morgan = require('morgan');
+const mysql = require('mysql');
+const cors = require('cors');
+const myConnection = require('express-myconnection');
 const bodyParser = require('body-parser');
-const db = require("./server/config/dbConection");
+const dbConnection = require("./server/config/dbConection");
+const app = express();
+
+//importing routes
 const formRoute = require("./server/routes/formRoute");
 
+//settings
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json({
-    limit: '20mb' 
-}));
 
+//midleware
+app.use(morgan('dev'));
+app.use(cors());
+app.use(myConnection(mysql, dbConnection));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+//routes
+app.use("/", formRoute);
+app.use('/form', formRoute);
+app.use('/list', formRoute);
+app.use('/description', formRoute);
+
+//static files
 app.use(express.static(__dirname + "/dist/practice/"));
-app.use("/form", formRoute);
-app.use("/list", formRoute);
-
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./dist/practice/index.html"));
 });
 
-console.log(`==================
+// database status 
+/* console.log(`==================
 data base config:
-host: ${db.config.host}
-port: ${db.config.port}
-user: ${db.config.user}
-database: ${db.config.database}
-==================`);
+host: ${dbConnection.config.host},
+port: ${dbConnection.config.port},
+user: ${dbConnection.config.user},
+database: ${dbConnection.config.database}
+==================`); */
 
+//starting the server
 app.listen(port, () => {
     console.log("server on port 3000");
 });

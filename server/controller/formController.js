@@ -1,30 +1,29 @@
 const formManager = require('../manager/formManager');
+const controller = {};
 
-exports.getForm = (req, res) => {
+controller.getForm = (req, res) => {
     var FM = new formManager();
-    console.log("get form controller work");
-    res.json(req.params);
-    return FM.getForm();
+    return FM.getForm(req, res);
 };
 
-exports.postForm = (req, res) => {
+controller.oneForm = (req, res) => {
     var FM = new formManager();
-    console.log("post controller work");
-    res.json(req.body);
-    return FM.postForm(req.body);
+    return FM.oneForm(req, res);
+}
+
+controller.postForm = (req, res) => {
+    var FM = new formManager();
+    return FM.postForm(req, res);
 };
 
-exports.putList = (req, res) => {
+controller.putList = (req, res) => {
     var FM = new formManager();
-    console.log("put controller work");
-    res.json({text: 'actualizando formulario'});
-    return FM.putList();
+    return FM.putList(req, res);
 };
 
-exports.deleteList = (req, res) => {
+controller.deleteList = (req, res) => {
     var FM = new formManager();
-    console.log("delete controller work");
-    res.json({text: 'eliminando formulario'});
-    return FM.deleteList();
+    return FM.deleteList(req, res);
 };
 
+module.exports = controller;

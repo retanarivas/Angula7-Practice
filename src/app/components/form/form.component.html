@@ -1,6 +1,6 @@
 <div>
   <h5 class="text-center">FORMULARIO PARA AGREGAR</h5>
-  <form [formGroup]="form" class="form" novalidate>
+  <form [formGroup]="form" class="form" novalidate method="POST" action="/form/add">
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <mat-form-field>
@@ -30,7 +30,7 @@
       <div class="form-row">
         <div class="col-md-12 mb-3">
           <mat-form-field>
-            <textarea type="text" formControlName="description" matInput #inputDesc maxlength="200" placeholder="Nombre cientifico" required></textarea>
+            <textarea type="text" formControlName="description" matInput #inputDesc maxlength="200" placeholder="Descripcion" required></textarea>
             <mat-hint>{{inputDesc.value?.length || 0}}/200</mat-hint>
             <mat-error>este campo es requerido</mat-error>
           </mat-form-field>
@@ -38,7 +38,7 @@
       </div>
       <div class="form-row">
         <div class="col-md-4 mb-3">
-          <input type="file" formControlName="img" (change)="onFileSelected($event)" required>
+          <input type="file" formControlName="img" required>
           <mat-error *ngIf="form.controls['img'].errors?.pattern">Extension de archivo no valida</mat-error>
         </div>
       </div>

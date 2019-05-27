@@ -1,4 +1,8 @@
+const express = require('express');
 const mysql = require('mysql');
+const myConnection = require('express-myconnection');
+const app = express();
+;
 
 
 const connection = mysql.createConnection({
@@ -7,11 +11,5 @@ const connection = mysql.createConnection({
         password: '',
         database: 'plants'
     });
-/* connection.connect((error) => {
-    if(error) {
-        console.log(error);
-    } else {
-        console.log('conected');
-    }
-}); */
+
  module.exports = connection;

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainNavComponent } from './main-nav/main-nav.component';
-import { FormComponent } from './form/form.component';
-import { ListComponent } from './list/list.component';
-import { DescriptionComponent } from './description/description.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { FormComponent } from './components/form/form.component';
+import { ListComponent } from './components/list/list.component';
+import { DescriptionComponent } from './components/description/description.component';
 
 const routes: Routes = [
-  {path: '*', component: MainNavComponent},
+  {path: '', redirectTo: '/list', pathMatch: 'full'},
   {path: 'form', component: FormComponent},
   {path: 'list', component: ListComponent},
   {path: 'description', component: DescriptionComponent}

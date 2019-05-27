@@ -3,28 +3,29 @@ const formDAO = require('../dao/formDAO');
 var formManager = class formManager {
     constructor() {}
     
-    getForm() {
+    getForm(req, res) {
         var FD = new formDAO();
-        console.log('get manager works');
-        return FD.getForm();
+        return FD.getForm(req, res);
     }
 
-    postForm(data) {
+    oneForm(req, res) {
         var FD = new formDAO();
-        console.log('post manager works');
-        return FD.postForm(data);
+        return FD.oneForm(req, res);
     }
 
-    putList() {
+    postForm(req, res) {
         var FD = new formDAO();
-        console.log('put manager works');
-        return FD.putList();
+        return FD.postForm(req, res);
     }
 
-    deleteList() {
+    putList(req, res) {
         var FD = new formDAO();
-        console.log('delete manager works');
-        return FD.deleteList();
+        return FD.putList(req, res);
+    }
+
+    deleteList(req, res) {
+        var FD = new formDAO();
+        return FD.deleteList(req, res);
     }
 }
 

@@ -15,13 +15,14 @@ import {
   MatInputModule,
   MatCardModule
 } from '@angular/material';
-import { MainNavComponent } from './main-nav/main-nav.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { ToolBarComponent } from './tool-bar/tool-bar.component';
-import { FormComponent } from './form/form.component';
-import { ListComponent } from './list/list.component';
-import { DescriptionComponent } from './description/description.component';
+import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
+import { FormComponent } from './components/form/form.component';
+import { ListComponent } from './components/list/list.component';
+import { DescriptionComponent } from './components/description/description.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PlantsService } from './services/plants.service'
 
 
 @NgModule({
@@ -50,7 +51,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    PlantsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

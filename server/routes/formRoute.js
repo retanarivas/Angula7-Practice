@@ -1,10 +1,11 @@
 const express = require("express");
-const formRoute = express.Router();
+const router = express.Router();
 const formController = require("../controller/formController");
 
-    formRoute.route("/add").post(formController.postForm);
-    formRoute.route("/get").get(formController.getForm);
-    formRoute.route("/update").put(formController.putList);
-    formRoute.route("/delete").delete(formController.deleteList);
+    router.get("/get", formController.getForm);
+    router.get("/one/:id", formController.oneForm);
+    router.post("/add", formController.postForm);
+    router.put("/update/:id", formController.putList);
+    router.delete("/delete/:id", formController.deleteList);
 
-module.exports = formRoute;
+module.exports = router;

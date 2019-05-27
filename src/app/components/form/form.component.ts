@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { PlantsService } from '../../services/plants.service';
 
 @Component({
   selector: 'appHttpClientModule-form',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private plantService: PlantsService) { }
 
   patternExp: string = "^[^><%$!?))&'@]*$";
   allowExtensions = "(.*?)\.(JPG|jpg|PNG|png)$";
@@ -23,24 +24,20 @@ export class FormComponent implements OnInit {
   });
 
   ngOnInit() {
+
   }
 
   onSend() {
-    const newItem = this.form.value;
-    this.http
-    .post('form/add', newItem)
-    .subscribe(
-      error => console.error(error),
+    const plant = this.form.value;
+    this.plantService.savePlant(plant).subscribe(
+      error => console.log(error),
       res => console.log(res)
     );
     this.form.reset();
   }
+
   onClear() {
     this.form.reset();
-  }
-
-  onFileSelected(event) {
-    console.log(event.target.files.name);
   }
 
 }
