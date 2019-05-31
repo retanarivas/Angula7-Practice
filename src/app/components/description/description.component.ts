@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { PlantsService } from '../../services/plants.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-description',
@@ -9,9 +9,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DescriptionComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private plantService: PlantsService 
+  ) { }
 
+  plants: any = []
   ngOnInit() {
+    this.plantService.getPlants()
+    .subscribe(
+      res => {
+        this.plants = res;
+      },
+      error => console.log(error)
+    )
   }
 
 }

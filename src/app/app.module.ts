@@ -5,6 +5,8 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertModule } from 'ngx-alerts'; 
+import { ToastrModule } from 'ngx-toastr'
 import {
   MatSidenavModule,
   MatToolbarModule,
@@ -22,7 +24,10 @@ import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
 import { DescriptionComponent } from './components/description/description.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PlantsService } from './services/plants.service'
+import { PlantsService } from './services/plants.service';
+import { UpdateFormComponent } from './components/update-form/update-form.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -33,7 +38,8 @@ import { PlantsService } from './services/plants.service'
     ToolBarComponent,
     FormComponent,
     ListComponent,
-    DescriptionComponent
+    DescriptionComponent,
+    UpdateFormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,12 @@ import { PlantsService } from './services/plants.service'
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule,
+    NgbModule,
+    AlertModule.forRoot({
+      maxMessages: 5, timeout: 5000, position: 'right'
+    })
   ],
   providers: [
     PlantsService

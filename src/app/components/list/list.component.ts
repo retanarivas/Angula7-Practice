@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantsService } from '../../services/plants.service';
-import { Plant } from 'src/app/models/plant';
+import { AlertService } from 'ngx-alerts';
+
 
 @Component({
   selector: 'app-list',
@@ -9,7 +10,10 @@ import { Plant } from 'src/app/models/plant';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private plantsServeice: PlantsService) { }
+  constructor(
+    private plantsServeice: PlantsService,
+    private alert: AlertService,
+  ) { }
 
   plants: any = [];
   ngOnInit() {
@@ -21,17 +25,14 @@ export class ListComponent implements OnInit {
     );
   }
 
-
   onDelete(id: string) {
-    this.plantsServeice.deletePlant(id).subscribe(
-      res => {console.log(res)},
-      error => console.log(error)
+    this.plantsServeice.deletePlant(id)
+    .subscribe( 
+        res => {
+          confirm('DESEA ELIMINAR LA PLANTA ?'),
+          this.alert.danger('eliminado correcto'),
+          this.ngOnInit();
+        } 
     );
-    this.ngOnInit();
   }
-
-  onUpdate() {
-    
-  }
-
 }

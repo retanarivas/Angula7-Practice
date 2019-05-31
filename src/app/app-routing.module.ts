@@ -9,7 +9,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/list', pathMatch: 'full'},
   {path: 'form', component: FormComponent},
   {path: 'list', component: ListComponent},
-  {path: 'description', component: DescriptionComponent}
+  {path: 'description', component: DescriptionComponent},
+  {path: 'form/edit/:id', component: FormComponent}
 ];
 
 @NgModule({
@@ -17,4 +18,9 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [MainNavComponent, FormComponent, ListComponent, DescriptionComponent];
+export const routingComponents = [
+  MainNavComponent, 
+  FormComponent, 
+  ListComponent, 
+  DescriptionComponent
+];

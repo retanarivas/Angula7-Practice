@@ -1,27 +1,27 @@
 <div>
   <h5 class="text-center">FORMULARIO PARA AGREGAR</h5>
-  <form [formGroup]="form" class="form" novalidate method="POST" action="/form/add">
+  <form [formGroup]="form" class="form" novalidate enctype="multipart/form-data">
       <div class="form-row">
         <div class="col-md-4 mb-3">
           <mat-form-field>
-              <input type="text" formControlName="name" matInput #inputName maxlength="20" placeholder="Nombre" required>
-              <mat-hint>{{inputName.value?.length || 0}}/20</mat-hint>
+              <input type="text" formControlName="name" matInput #inputName maxlength="25" placeholder="Nombre"  [(ngModel)]="plant.nombre" (keypress)="noNumbers($event)" required>
+              <mat-hint>{{inputName.value?.length || 0}}/25</mat-hint>
               <mat-error *ngIf="form.controls['name'].errors?.required">este campo es requerido</mat-error>
               <mat-error *ngIf="form.controls['name'].errors?.pattern">No se prmiten caracteres especiales</mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-4 mb-3">
           <mat-form-field>
-            <input type="text" formControlName="secondName" matInput #inputCien maxlength="20" placeholder="Nombre cientifico" required>
-            <mat-hint>{{inputCien.value?.length || 0}}/20</mat-hint>
+            <input type="text" formControlName="secondName" matInput #inputCien maxlength="25" placeholder="Nombre cientifico" [(ngModel)]="plant.nombre_cientifico" (keypress)="noNumbers($event)" required>
+            <mat-hint>{{inputCien.value?.length || 0}}/25</mat-hint>
             <mat-error *ngIf="form.controls['secondName'].errors?.required">este campo es requerido</mat-error>
             <mat-error *ngIf="form.controls['secondName'].errors?.pattern">No se prmiten caracteres especiales</mat-error>
           </mat-form-field>
         </div>
         <div class="col-md-4 mb-3">
           <mat-form-field>
-            <input type="text" formControlName="region" matInput #inputReg maxlength="20" placeholder="Region" required>
-            <mat-hint>{{inputReg.value?.length || 0}}/20</mat-hint>
+            <input type="text" formControlName="region" matInput #inputReg maxlength="25" placeholder="Region" [(ngModel)]="plant.region" (keypress)="noNumbers($event)" required>
+            <mat-hint>{{inputReg.value?.length || 0}}/25</mat-hint>
             <mat-error *ngIf="form.controls['region'].errors?.required">este campo es requerido</mat-error>
             <mat-error *ngIf="form.controls['region'].errors?.pattern">No se prmiten caracteres especiales</mat-error>
           </mat-form-field>
@@ -30,7 +30,7 @@
       <div class="form-row">
         <div class="col-md-12 mb-3">
           <mat-form-field>
-            <textarea type="text" formControlName="description" matInput #inputDesc maxlength="200" placeholder="Descripcion" required></textarea>
+            <textarea type="text" formControlName="description" matInput #inputDesc maxlength="200" placeholder="Descripcion" [(ngModel)]="plant.descripcion" required></textarea>
             <mat-hint>{{inputDesc.value?.length || 0}}/200</mat-hint>
             <mat-error>este campo es requerido</mat-error>
           </mat-form-field>
@@ -38,20 +38,20 @@
       </div>
       <div class="form-row">
         <div class="col-md-4 mb-3">
-          <input type="file" formControlName="img" required>
+          <input type="file" name="image" formControlName="img"  accept=".jpeg, .jpg, .png, .gif" (change)="onChange($event)" required>
           <mat-error *ngIf="form.controls['img'].errors?.pattern">Extension de archivo no valida</mat-error>
         </div>
       </div>
       <div class="form-row">
         <div class="col-md-4">
-          <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid" (click)="onSend()">Enviar</button>
+          <button mat-raised-button type="button" color="primary" [disabled]="form.invalid" (click)="edit ? onUpdate() : onSend()">Enviar</button>
         </div>
         <div class="col-md-4">
-          <button mat-raised-button color="primary" (click)="onClear()">Limpiar</button>
+          <button type="button" mat-raised-button color="primary" (click)="onClear()">Limpiar</button>
         </div>
-        <div class="col-md-4">
-            <button mat-raised-button color="primary">Cancelar</button>
+        <div class="col-md-4 cen">
+          <button type="button" mat-raised-button color="primary" (click)="onCancel()">Cancelar</button>
         </div>
       </div>
     </form>
-    
+    <ngx-alerts></ngx-alerts>
