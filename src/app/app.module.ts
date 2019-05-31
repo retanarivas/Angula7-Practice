@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from 'ngx-alerts'; 
-import { ToastrModule } from 'ngx-toastr'
 import {
   MatSidenavModule,
   MatToolbarModule,
@@ -25,9 +24,9 @@ import { ListComponent } from './components/list/list.component';
 import { DescriptionComponent } from './components/description/description.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PlantsService } from './services/plants.service';
-import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InfoComponent } from './components/info/info.component';
 
 
 @NgModule({
@@ -39,7 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormComponent,
     ListComponent,
     DescriptionComponent,
-    UpdateFormComponent
+    InfoComponent
   ],
   imports: [
     BrowserModule,

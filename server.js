@@ -3,10 +3,11 @@ const path = require("path");
 const morgan = require('morgan');
 const mysql = require('mysql');
 const cors = require('cors');
+const  bodyParser = require('body-parser');
 const myConnection = require('express-myconnection');
-const formidable = require('express-formidable');
 const dbConnection = require("./server/config/dbConection");
 const app = express();
+
 
 //importing routes
 const formRoute = require("./server/routes/formRoute");
@@ -19,20 +20,18 @@ const port = process.env.PORT || 3000;
 app.use(morgan('dev'));
 app.use(cors());
 app.use(myConnection(mysql, dbConnection));
-app.use(express.json());
+//app.use(express.json());
+app.use(bodyParser.json({
+    limit: '20mb' 
+}));
 app.use(express.urlencoded({extended: false}));
-/* app.use(formidable({ 
-    encoding: 'utf-8',
-    multiples: true, 
-    keepExtensions: true,
-    uploadDir: '/src/images'
-})); */
 
 //routes
 app.use("/", formRoute);
 app.use('/form', formRoute);
 app.use('/list', formRoute);
 app.use('/description', formRoute);
+app.use('/info', formRoute);
 
 //static files
 app.use(express.static(__dirname + "/dist/practice"));

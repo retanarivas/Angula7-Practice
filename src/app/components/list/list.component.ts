@@ -15,9 +15,10 @@ export class ListComponent implements OnInit {
     private alert: AlertService,
   ) { }
 
-  plants: any = [];
+  plants: any = {};
   ngOnInit() {
-    this.plantsServeice.getPlants().subscribe(
+    this.plantsServeice.getPlants()
+    .subscribe(
       res => {
         this.plants = res;
       },

@@ -30,8 +30,8 @@
       <div class="form-row">
         <div class="col-md-12 mb-3">
           <mat-form-field>
-            <textarea type="text" formControlName="description" matInput #inputDesc maxlength="200" placeholder="Descripcion" [(ngModel)]="plant.descripcion" required></textarea>
-            <mat-hint>{{inputDesc.value?.length || 0}}/200</mat-hint>
+            <textarea type="text" formControlName="description" matInput #inputDesc maxlength="400" placeholder="Descripcion" [(ngModel)]="plant.descripcion" required></textarea>
+            <mat-hint>{{inputDesc.value?.length || 0}}/400</mat-hint>
             <mat-error>este campo es requerido</mat-error>
           </mat-form-field>
         </div>
